@@ -4,7 +4,7 @@ public class Chain
 {
     public Dictionary<string, List<Word>> Words { get; set; } = new();
     private Dictionary<string, int> _sums = new();
-    private Random _rand = new();
+    private readonly Random _rand = new(System.Environment.TickCount);
 
     /// <summary>
     /// Returns a random starting word from the stored list of words
@@ -115,8 +115,6 @@ public class Chain
     {
         foreach (string word in Words.Keys)
         {
-            double sum = 0;  // Total sum of all the occurrences of each followup word
-
             // Update the probabilities
             foreach (Word s in Words[word])
             {
